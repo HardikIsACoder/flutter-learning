@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:rolodex/screens/contact_groups.dart';
 
 import 'contact_groups.dart';
+import 'contacts.dart';
 
 const largeScreenMinWidth = 600;
 
@@ -25,7 +27,7 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
       builder: (context, constraints) {
         final isLargeScreen = constraints.maxWidth > largeScreenMinWidth;
         if (isLargeScreen) {
-          return const Text('Large Screen layout');
+          return _buildLargeScreenLayout();
         } else {
           return const ContactGroupsPage();
         }
@@ -39,9 +41,15 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
       child: SafeArea(
         child: Row(
           children: [
-            const SizedBox(width: 320, child: Text('Sidebar placeholder')),
+            SizedBox(
+              width: 320,
+              child: ContactGroupsSidebar(
+                selectedListId: selectedListId,
+                onListSelected: _onContactListSelected,
+              ),
+            ),
             Container(width: 1, color: CupertinoColors.separator),
-            const Expanded(child: Text('Details placeholder')),
+            Expanded(child: ContactListDetail(listId: selectedListId)),
           ],
         ),
       ),
