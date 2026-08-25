@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:rolodex/screens/contact_groups.dart';
 
-import 'contact_groups.dart';
 import 'contacts.dart';
 
 const largeScreenMinWidth = 600;
